@@ -1,0 +1,49 @@
+- Aula 2.6
+    - Produto produto = entityManager.find(Produto.class, 1);
+        //Neste segundo a exemplo a diferença é que ele não executa na hora; apenas quando chama alguma propriedade
+        //A diferença é notada ao imprimir o LOG do Hibernate. O SQL só é gerado após chamar uma propriedade
+      Produto produto = entityManager.getReference(Produto.class, 1);
+-------------------------------------------------------------------------------------
+
+- Aula 2.8
+    - Precisa de transação para adicionar, atualizar e remover dados do banco
+-------------------------------------------------------------------------------------
+
+- Aula 2.9
+    -   entityManager.getTransaction().begin();
+        entityManager.persist(produto);
+        entityManager.getTransaction().commit();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+        // Não é correto fazer o teste assim porque o produto que foi persistido ainda fica
+        //em memória mesmo após a transação
+        //O correto seria limpar a memória com o método { entityManager.clear(); }
+        //Não é necessário utilizar o comando acima na remoção
+        Assertions.assertNotNull(produtoVerificacao);
+    
+    - Métodos de transações funcionam fora do escopo do "transaction", porém a transação só vai ocorrer
+        de fato quando for aberta uma transação (não é bom fazer dessa forma por conta da organização do código)
+-------------------------------------------------------------------------------------
+
+- Aula 2.10
+    -   //Esse bloco de código gera erro porque o objeto precisa ser informado para a JPA saber que ele existe
+        //Necessário fazer um find antes para que o objeto fique alocado na memória
+        Produto produto = new Produto();
+        produto.setId(3);
+
+        entityManager.getTransaction().begin();
+        entityManager.remove(produto);
+        entityManager.getTransaction().commit();
+-------------------------------------------------------------------------------------
+
+- Aula 2.14
+    - Persist: usado para insert
+    - Merge: usado para insert e update
+    - Com o parâmetro passado no Merge, é feito a cópia dele para o EntityManager (esta cópia que será gerenciada),
+        devido a isso, qualquer alteração feita posteriormente no objeto original não é refletida no BD
+-------------------------------------------------------------------------------------
+
+- Aula 2.16
+    - Detach (desanexar): desanexa uma instância gerenciada pelo EntityManager. Qualquer alteração realizada na
+        instãncia após a chamada do método "detach()" não é refletida no BD
+-------------------------------------------------------------------------------------

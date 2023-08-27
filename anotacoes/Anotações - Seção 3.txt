@@ -1,0 +1,10 @@
+- Aula 3.4
+    - Anotações do jakarta em entidade: se colocar em um atributo, deve-se colocar em todos;
+        se colocar em um método, deve-se colocar em todos que precisem das anotações e caso
+        tenha a anotação do Lombok, o Lombok dará preferência para a implementação do desenvolvedor
+-------------------------------------------------------------------------------------
+
+- Aula 3.7
+    - @GeneratedValue: strategy
+        - GenerationType.AUTO: quem escolhe a forma como o ID é gerado será a implementação (Hibernate)
+-------------------------------------------------------------------------------------

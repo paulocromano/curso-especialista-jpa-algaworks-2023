@@ -8,3 +8,25 @@
     - @GeneratedValue: strategy
         - GenerationType.AUTO: quem escolhe a forma como o ID é gerado será a implementação (Hibernate)
 -------------------------------------------------------------------------------------
+
+- Aula 3.8
+    -   //Para gerar uma sequência via código e definir os parâmetros dela
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+        @SequenceGenerator(name = "seq", sequenceName = "sequencias_chave_primaria", initialValue = 10)
+        private Integer id;
+-------------------------------------------------------------------------------------
+
+- Aula 3.9
+    -   //Para gerar uma tabela via código e definir os parâmetros dela
+        @GeneratedValue(strategy = GenerationType.TABLE, generator = "tabela")
+        @TableGenerator(name = "tabela", table = "hibernate_sequences", pkColumnName = "sequence_name",
+                pkColumnValue = "categoria", valueColumnName = "next_val")
+        private Integer id;
+-------------------------------------------------------------------------------------
+
+- Aula 3.10
+    -   //Usa o auto incremento definido pelo banco de dados
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @EqualsAndHashCode.Include
+        private Integer id;
+-------------------------------------------------------------------------------------

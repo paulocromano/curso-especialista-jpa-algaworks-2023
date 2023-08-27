@@ -1,0 +1,28 @@
+- Aula 4.1
+    - Own e Non-owning: Atributos de relacionamento que possuem @JoinColumn ou @JoinTable são OWN;
+        atributos que possuem a propriedade "mappedBy" são Nin-owning
+    - Quem persiste em uma relação será o owner. Se tentar persistir o non-owning sem o own, não será persistido
+-------------------------------------------------------------------------------------
+
+- Aula 4.2
+    - Quando não especificar o "name" do @JoinColumn ou "mappedBy" de anotações que especificam o
+        relacionamento, o nome padrão será o do atributo. Ex: 
+            //Na entidade de Pedido, ele concatena o nome do atributo com o ID da tabela Cliente
+            //e como o nome da coluna de mapeamento da tabela Pedido é "cliente_id", não precisa
+            //especificar explicatamente no mapeamento
+            @ManyToOne
+            private Cliente cliente;
+-------------------------------------------------------------------------------------
+
+- Aula 4.6
+    - Auto relacionamento: quando uma entidade referencia ela mesma
+-------------------------------------------------------------------------------------
+
+- Aula 4.11
+    - Uso do @JoinTable em relacionamento @OneToOne
+        //Uso da propriedade "unique" para não permitir que as chaves se repitam
+        @OneToOne
+        @JoinTable(name = "pedido_nota_fiscal", joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true),
+            inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))
+        private Pedido pedido;
+-------------------------------------------------------------------------------------

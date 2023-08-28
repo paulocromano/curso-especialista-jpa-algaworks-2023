@@ -16,3 +16,6 @@
     - Dirty Checking: é quando há alteração em uma instância gerenciada pela JPA
     - fica ouvindo a instância que está sendo gerenciada
 -------------------------------------------------------------------------------------
+
+- Aula 5.6
+    - 

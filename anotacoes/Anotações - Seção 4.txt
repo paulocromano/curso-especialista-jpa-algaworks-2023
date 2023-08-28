@@ -26,3 +26,9 @@
             inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))
         private Pedido pedido;
 -------------------------------------------------------------------------------------
+
+- Aula 4.13
+    - Atributo "optional" das anotações de relacionamentos: o default é true (usado left outer join);
+        quando false é usado o inner join (mais performático)
+    - Serve apenas para quando salvar uma instância
+-------------------------------------------------------------------------------------

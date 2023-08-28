@@ -1,0 +1,12 @@
+- Aula 5.2:
+    - Cache de Primeiro Nível: Se algum objeto ou lista de um "find", por exemplo, já estiver na memória e sendo
+        gerenciado e houver um mesmo find após esse, é pego da memória e não do banco de dados
+-------------------------------------------------------------------------------------
+
+- Aula 5.4:
+    - Flush explícito: obriga a JPA a pegar tudo o que está na memória e não sincronizado com o banco e 
+        jogar no
+    - Commit: antes da execução do commit é realizado um "flush" implícito e depois ocorre a confirmação
+        da transação
+    - Querys com JPQL: não acessam a Memória de Primeiro Nível, porém se tiver alguma transação em aberto antes de
+        sua execução, é realizado o flush implícito para garantir a sincronização

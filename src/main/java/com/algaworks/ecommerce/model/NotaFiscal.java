@@ -19,7 +19,7 @@ public class NotaFiscal {
     @EqualsAndHashCode.Include
     private Integer id;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
 //    @JoinTable(name = "pedido_nota_fiscal", joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true),
 //        inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))

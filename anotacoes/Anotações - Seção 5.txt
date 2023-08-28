@@ -10,3 +10,9 @@
         da transação
     - Querys com JPQL: não acessam a Memória de Primeiro Nível, porém se tiver alguma transação em aberto antes de
         sua execução, é realizado o flush implícito para garantir a sincronização
+-------------------------------------------------------------------------------------
+
+- Aula 5.5
+    - Dirty Checking: é quando há alteração em uma instância gerenciada pela JPA
+    - fica ouvindo a instância que está sendo gerenciada
+-------------------------------------------------------------------------------------

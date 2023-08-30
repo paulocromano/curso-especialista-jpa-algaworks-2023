@@ -1,0 +1,8 @@
+- Aula 6.1:
+    - @Column: o atibuto "updatable" não permite que o atributo da entidade seja atualizado
+    - @Column: o atibuto "insertable" não permite que o atributo da entidade tenha um valor no momento do cadastro
+-------------------------------------------------------------------------------------
+
+- Aula 6.3:
+    - @IdClass: Quando tem uma entidade que usa esta anotação, em cima dos objetos que fazem
+        relacionamentos, deve-se colocar as seguintes propriedades na anotação @JoinColumn(insertable = false, updatable = false)

@@ -26,7 +26,7 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
 
         Pedido pedido = new Pedido();
 //        pedido.setId(1); // comentado porque está utilizando a estratégia IDENTITY na entidade
-        pedido.setDataPedido(LocalDateTime.now());
+        //pedido.setDataPedido(LocalDateTime.now());
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setTotal(new BigDecimal(1000));
         pedido.setEnderecoEntrega(endereco);

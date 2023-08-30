@@ -11,3 +11,12 @@
 - Aula 6.6:
     - @MapsId: quando acontece de uma chave primária também ser uma chave estrangeira
 -------------------------------------------------------------------------------------
+
+- Aula 6.9:
+    - @ElementCollection: trabalhar com coleções de tipos simples, como String, Integer etc
+    - @CollectionTable: Personalizar os detalhes da tabela de @ElementCollection, como o nome, joinColumns etc
+    - @Column: neste tipo de atributo será referente ao nome da coluna na tabela com a coleção de elementos
+-------------------------------------------------------------------------------------
+
+- Aula 6.10:
+    - 

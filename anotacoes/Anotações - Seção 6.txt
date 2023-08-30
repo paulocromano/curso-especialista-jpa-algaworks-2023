@@ -6,3 +6,8 @@
 - Aula 6.3:
     - @IdClass: Quando tem uma entidade que usa esta anotação, em cima dos objetos que fazem
         relacionamentos, deve-se colocar as seguintes propriedades na anotação @JoinColumn(insertable = false, updatable = false)
+-------------------------------------------------------------------------------------
+
+- Aula 6.6:
+    - @MapsId: quando acontece de uma chave primária também ser uma chave estrangeira
+-------------------------------------------------------------------------------------

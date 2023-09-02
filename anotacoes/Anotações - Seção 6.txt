@@ -18,5 +18,27 @@
     - @Column: neste tipo de atributo será referente ao nome da coluna na tabela com a coleção de elementos
 -------------------------------------------------------------------------------------
 
-- Aula 6.10:
-    - 
+- Aula 6.14:
+    - @SecondaryTable: permite duas tabelas como uma única entidade
+-------------------------------------------------------------------------------------
+
+- Aula 6.15:
+    - @MappedSuperclass: Faz com que a JPA reconheça atributos como colunas do banco
+        referente a classe que extender a classe com esta anotação
+-------------------------------------------------------------------------------------
+
+- Aula 6.16:
+    - @Inheritance(strategy = InheritanceType.SINGLE_TABLE): Que identifica que as classes
+        que herdarem a classe abstrata com esta anotação usarão a tabela do banco referente
+        a esta classe abstrata
+    - @DiscriminatorColumn(name = "tipo_pagamento", discriminatorType = DiscriminatorType.STRING): define
+        o tipo de identificador de cada entidade que herdará da classe abstrata pra salvar no banco
+    - @DiscriminatorValue("cartao"): na classe que herda de uma classe abstrata é usada esta anotação
+        para identificar qual tabela tabela se refere um novo registro inserido 
+-------------------------------------------------------------------------------------
+
+- Aula 6.19:
+    - @Inheritance(strategy = InheritanceType.JOINED): irá criar uma tabela que guardará as informações
+        dos seus atributos com os dados passados das classes que a extenderem, porém neste caso,
+        cada classe que a extender, será criado uma tabela corresponde àquela classe
+-------------------------------------------------------------------------------------

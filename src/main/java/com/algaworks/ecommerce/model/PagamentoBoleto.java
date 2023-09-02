@@ -1,27 +1,18 @@
 package com.algaworks.ecommerce.model;
 
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@DiscriminatorValue("boleto")
 @Entity
-@Table(name = "pagamento_boleto")
-public class PagamentoBoleto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Integer id;
-
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
+//@Table(name = "pagamento_boleto")
+public class PagamentoBoleto extends Pagamento {
 
     @Column(name = "codigo_barras")
     private String codigoBarras;

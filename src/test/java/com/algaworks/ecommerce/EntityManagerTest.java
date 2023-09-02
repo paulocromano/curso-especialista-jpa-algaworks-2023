@@ -14,10 +14,10 @@ public class EntityManagerTest {
 
     protected EntityManager entityManager;
 
-
     @BeforeAll
     public static void setUpBeforeClass() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("Ecommerce-PU");
+        entityManagerFactory = Persistence
+                .createEntityManagerFactory("Ecommerce-PU");
     }
 
     @AfterAll

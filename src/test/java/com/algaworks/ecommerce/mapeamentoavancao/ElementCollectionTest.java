@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.mapeamentoavancado;
+package com.algaworks.ecommerce.mapeamentoavancao;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Atributo;
@@ -39,7 +39,7 @@ public class ElementCollectionTest extends EntityManagerTest {
         entityManager.clear();
 
         Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
-        Assertions.assertFalse(produtoVerificacao.getTags().isEmpty());
+        Assertions.assertFalse(produtoVerificacao.getAtributos().isEmpty());
     }
 
     @Test
@@ -54,6 +54,9 @@ public class ElementCollectionTest extends EntityManagerTest {
         entityManager.clear();
 
         Cliente clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
-        Assertions.assertEquals(clienteVerificacao.getContatos().get("email"), "fernando@email.com");
+        Assertions.assertEquals(
+                "fernando@email.com", clienteVerificacao.getContatos().get("email"));
     }
+
+
 }

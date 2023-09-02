@@ -1,0 +1,8 @@
+- Aula 7.2:
+    - @Table(name = "cliente",
+        uniqueConstraints = { @UniqueConstraint(name = "unq_cpf", columnNames = { "cpf" }) },
+        indexes = { @Index(name = "idx_nome", columnList = "nome") })
+    - @UniqueConstraint(name = "unq_cpf", columnNames = { "cpf" }): define as constraints de uma tabela
+    - indexes = { @Index(name = "idx_nome", columnList = "nome") }: para que o banco de dados organize
+        os índices de determinado registro em uma tabela, a fim de encontrar o registro mais fácil
+-------------------------------------------------------------------------------------

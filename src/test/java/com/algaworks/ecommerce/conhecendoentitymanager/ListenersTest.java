@@ -8,13 +8,15 @@ import com.algaworks.ecommerce.model.StatusPedido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 public class ListenersTest extends EntityManagerTest {
 
     @Test
     public void carregarEntidades() {
         Produto produto = entityManager.find(Produto.class, 1);
         Pedido pedido = entityManager.find(Pedido.class, 1);
-
     }
 
     @Test
@@ -22,9 +24,10 @@ public class ListenersTest extends EntityManagerTest {
         Cliente cliente = entityManager.find(Cliente.class, 1);
 
         Pedido pedido = new Pedido();
-
+        pedido.setDataCriacao(LocalDateTime.now());
         pedido.setCliente(cliente);
         pedido.setStatus(StatusPedido.AGUARDANDO);
+        pedido.setTotal(BigDecimal.TEN);
 
         entityManager.getTransaction().begin();
 

@@ -14,6 +14,7 @@ public class MapeamentoEnumeracoesTest extends EntityManagerTest {
 //        cliente.setId(4); // comentado porque está utilizando a estratégia IDENTITY na entidade
         cliente.setNome("José Mineiro");
         cliente.setSexo(SexoCliente.MASCULINO);
+        cliente.setCpf("12312312");
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);

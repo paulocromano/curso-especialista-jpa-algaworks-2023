@@ -1,0 +1,8 @@
+- Aula 8.1:
+    - cascade = CascadeType.PERSIST: quando persistir a instância pai, persiste também a instância filha
+    - cascade = CascadeType.MERGE: quando atualizar a instância pai, atualiza também a instância filha
+    - cascade = CascadeType.REMOVE: quando remover a instância pai, remove também a instância filha
+    - cascade = CascadeType.DETACH: quando desanexar a instância pai do gerenciamento da JPA, fará o 
+        mesmo com a instância filha
+    - cascade = CascadeType.REFRESH: quando atualizar a instância pai, atualiza também a instância filha
+-------------------------------------------------------------------------------------

@@ -6,3 +6,26 @@
         mesmo com a instância filha
     - cascade = CascadeType.REFRESH: quando atualizar a instância pai, atualiza também a instância filha
 -------------------------------------------------------------------------------------
+
+- Aula 8.2: 
+    - Operações em relacionamentos sem cascade: não informar o tipo de cascade em um relacionamentos só irá
+        funcionar caso o objeto relacionado seja uma PK da entidade (tabela) que ele está
+-------------------------------------------------------------------------------------
+
+- Aula 8.4: 
+    - Operações em relacionamentos de cascade: é necessário informar o tipo MERGE para atualizações
+-------------------------------------------------------------------------------------
+
+- Aula 8.7:
+    - @ManyToMany: não faz sentido ter o cascade REMOVE em um relacionamento ManyToMany;
+        somente remover os dados da tabela intermediária entre os relacionamentos
+    - Neste caso não é pode informar o cascade REMOVE, pois removerá apenas os dados da
+        tabela intermediária que faz ligação entre ambas as tabelas, e não os dados da tabela
+        real do relacionamento
+-------------------------------------------------------------------------------------
+
+- Aula 8.8:
+    - @OneToOne e @OneToMany: possuem a propriedade "orphanRemoval"
+    - Remove os filhos órfãos de um relacionamento quando o pai é removido
+    - É necessário ter informado o cascade PERSIST para remover os filhos órfãos
+-------------------------------------------------------------------------------------

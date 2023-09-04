@@ -1,0 +1,26 @@
+- Aula 9.6:
+    - Na query pode ser usado tanto "inner join" como somente "join"
+    - Só traz os resultados que possuem ligação entre as tabelas realizadas pelo "join"
+-------------------------------------------------------------------------------------
+
+- Aula 9.7:
+    - Na query pode ser usado tanto "left outer join" como somente "left join"
+    - Traz os resultados independente de possuirem ligação ou não entre as tabelas realizadas pelo "left join"
+    - Olhar para a parte esquerda do "left join" pois será o lado que ele irá pegar todos os registros
+    - Tomar cuidado ao usar o left join com filtros": usar o "on" para restrições ao invés do "where",
+        pois o "on" vai fazer a verificação se existir o registro na tabela mapeada, enquanto o "where"
+        vai verificar independentemente, e isso não trará o registro quando não possuir relação entre as tabelas
+-------------------------------------------------------------------------------------
+
+- Aula 9.8:
+    - Fetch: busca algo a mais do que normalmente seria buscado
+    - Utilizado na sequência da cláusula "join"
+-------------------------------------------------------------------------------------
+
+- Aula 9.9:
+    - Path Expressions: caminho percorrido até chegar ao atributo que deseja
+-------------------------------------------------------------------------------------
+
+- Aula 9.11:
+    - Parâmetro em query JPQL: ":nome_parametro", ex: "p.id = :pedidoId"
+    - Posição do parâmetro em query JPQL: "? numero_posicao", ex: "pag.status = ?1"

@@ -33,3 +33,8 @@
 - Aula 9.36:
     - "In" em Subselect: não traz valores repetidos
 -------------------------------------------------------------------------------------
+
+- Aula 9.48:
+    - @NamedQuery: Prepara a query no momento de compilação (mais performática);
+        diferente das DynamicQueries (prepara no momento de execução)
+-------------------------------------------------------------------------------------

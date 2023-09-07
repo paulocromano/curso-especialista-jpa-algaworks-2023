@@ -1,0 +1,24 @@
+- Aula 10.1:
+    - Interface "CriteriaQuery": o seu tipo é o que será retornado pela query
+    - Interface "Root": é o que está na raíz da query após o "from"
+    - criteriaQuery.select(root): quando a query retorna o próprio "Root", não precisa
+        chamar este método
+    - criteriaQuery.where(criteriaBuilder.equal(root.get("id"), 1)): compara com o ID do Root
+-------------------------------------------------------------------------------------
+
+- Aula 10.2:
+    - TypedQuery: o seu tipo é o que a query irá retornar
+-------------------------------------------------------------------------------------
+
+- Aula 10.5:
+    - Tuple: como se fosse um Object[]
+    - criteriaQuery.select(criteriaBuilder.tuple(root.get("id").alias("id"), root.get("nome").alias("nome"))): ao invés
+        de pegar o resultado da Tuple pelo índice, eu pego pelo nome definido com o método "alias". 
+        Ex: lista.forEach(t -> System.out.println("ID: " + t.get("id") + ", Nome: " + t.get("nome")));
+-------------------------------------------------------------------------------------
+
+- Aula 10.10:
+    -  root.fetch("notaFiscal", JoinType.LEFT): já traz tudo em uma única consulta,
+        sem ter que fazer uma para o Root e outras para os joins
+-------------------------------------------------------------------------------------
+

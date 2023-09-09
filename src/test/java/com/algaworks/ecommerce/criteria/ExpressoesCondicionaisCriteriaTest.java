@@ -6,15 +6,82 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import org.hibernate.query.sqm.TemporalUnit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 public class ExpressoesCondicionaisCriteriaTest extends EntityManagerTest {
+
+    @Test
+    public void usarExpressaoIN02() {
+        Cliente cliente01 = entityManager.find(Cliente.class, 1);
+
+        Cliente cliente02 = new Cliente();
+        cliente02.setId(2);
+
+        List<Cliente> clientes = Arrays.asList(cliente01, cliente02);
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pedido> criteriaQuery = criteriaBuilder.createQuery(Pedido.class);
+        Root<Pedido> root = criteriaQuery.from(Pedido.class);
+
+        criteriaQuery.select(root);
+
+        criteriaQuery.where(root.get(Pedido_.cliente).in(clientes));
+
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(criteriaQuery);
+
+        List<Pedido> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+    }
+
+    @Test
+    public void usarExpressaoIN01() {
+        List<Integer> ids = Arrays.asList(1, 3, 4, 6);
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pedido> criteriaQuery = criteriaBuilder.createQuery(Pedido.class);
+        Root<Pedido> root = criteriaQuery.from(Pedido.class);
+
+        criteriaQuery.select(root);
+
+        criteriaQuery.where(root.get(Pedido_.id).in(ids));
+
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(criteriaQuery);
+
+        List<Pedido> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+    }
+
+    @Test
+    public void usarExpressaoCase() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> criteriaQuery = criteriaBuilder.createQuery(Object[].class);
+        Root<Pedido> root = criteriaQuery.from(Pedido.class);
+
+        criteriaQuery.multiselect(
+                root.get(Pedido_.id),
+//                criteriaBuilder.selectCase(root.get(Pedido_.STATUS))
+//                        .when(StatusPedido.PAGO.toString(), "Foi pago.")
+//                        .when(StatusPedido.AGUARDANDO.toString(), "Está aguardando.")
+//                        .otherwise(root.get(Pedido_.status))
+                criteriaBuilder.selectCase(root.get(Pedido_.pagamento).type().as(String.class))
+                        .when("boleto", "Foi pago com boleto.")
+                        .when("cartao", "Foi pago com cartão")
+                        .otherwise("Não identificado")
+        );
+
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(criteriaQuery);
+
+        List<Object[]> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(arr -> System.out.println(arr[0] + ", " + arr[1]));
+    }
 
     @Test
     public void usarExpressaoDiferente() {

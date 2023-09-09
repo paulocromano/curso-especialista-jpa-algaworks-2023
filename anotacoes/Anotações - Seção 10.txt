@@ -27,3 +27,13 @@
         uma ou mais expressões e definir o agrupamento
 -------------------------------------------------------------------------------------
 
+- Aula 10.24:
+    - criteriaBuilder.treat(joinPagamento, PagamentoBoleto.class): neste caso é para tratar
+        uma classe abstrata como uma de suas implementações, neste caso "PagamentoBoleto".
+-------------------------------------------------------------------------------------
+
+- Aula 10.34:
+    - Cláusula Having: usado como um "Where" em agrupamentos com o "group by"
+    - Cláusula Having: só pode usar funções de agregação (sum, avg...) ou atributos já utilizados no "group by"
+-------------------------------------------------------------------------------------
+

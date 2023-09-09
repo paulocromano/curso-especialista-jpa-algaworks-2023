@@ -22,3 +22,8 @@
         sem ter que fazer uma para o Root e outras para os joins
 -------------------------------------------------------------------------------------
 
+- Aula 10.20:
+    - Agrupar condições: criteriaBuilder.or() ou criteriaBuilder.and() que podem receber
+        uma ou mais expressões e definir o agrupamento
+-------------------------------------------------------------------------------------
+

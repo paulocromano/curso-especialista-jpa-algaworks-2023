@@ -1,0 +1,18 @@
+- Aula 12.4:
+    - Pool de Conexões: grupo de conexões estabelecidas [com o BD] para serem usadas
+    - Ao invés de toda requisição que precisa do banco criar uma nova conexão (algo custoso), 
+        é usado uma conexão já existente
+    - Fatores que influenciam o Pool de Conexões:
+        1. cores da máquina da aplicação
+        2. Rede
+        3. Performance da máquina do BD
+    - Pode ter um número de cors maior do que a máquina da aplicação porque tem a espera
+        da comunicação com o banco de dados, que faz com que a thread da requisição fique
+        em espera, podendo assim, ser utilizada para atender outra requisição
+    - Fórmula de base: NCors * 2 (mais para aplicações com muita demanda)
+    - Propriedade "connectionTimeout": tempo máximo de espera de uma requisição com o Pool
+    - Propriedade "idleTimeout": utilizar quando usar o "minimumIdle". Se as conexões ficar
+        um tempo determinado sem uso, elas serão removidas do Pool (respeitando o valor mínimo de "minimumIdle")
+    - Propriedade "minimumIdle": mínimo de conexões que poderão ficar ociosas
+    - Propriedade "maximumIdle": máximo de conexões do Pool
+-------------------------------------------------------------------------------------

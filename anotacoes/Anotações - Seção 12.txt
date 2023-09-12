@@ -15,4 +15,19 @@
         um tempo determinado sem uso, elas serão removidas do Pool (respeitando o valor mínimo de "minimumIdle")
     - Propriedade "minimumIdle": mínimo de conexões que poderão ficar ociosas
     - Propriedade "maximumIdle": máximo de conexões do Pool
+    - Propriedade "maximumLifeTime": o tempo que uma conexão ficará no Pool de Conexões (tempo de vida dela).
+        Configurar com um tempo menor do que o BD permite
+    - Propriedade "maximumPoolSize": máximo de conexões com o BD
+-------------------------------------------------------------------------------------
+
+- Aula 12.8. O problema do @OneToOne com o lazy (com o Hibernate):
+    - Atributo que não é o proprietário da relação (usa o "mappedBy"), não dá pra colocar
+        ele como "LAZY"
+-------------------------------------------------------------------------------------
+
+- Aula 12.9:
+    - Entity Graph: sobrescreve configurações de mapeamento entre Entidades. Ex: se um mapeamento
+        em determinada consulta precisa ser EAGER, mas está como LAZY
+    - entityGraph.addAttributeNodes("dataCriacao", "status", "total", "notaFiscal"): traz somente
+        os atributos especificados, mesmo que na entidade de origem tenha atributos como EAGER
 -------------------------------------------------------------------------------------

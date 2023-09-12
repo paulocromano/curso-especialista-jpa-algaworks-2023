@@ -2,7 +2,9 @@ package com.algaworks.ecommerce.model;
 
 import com.algaworks.ecommerce.dto.ProdutoDTO;
 import com.algaworks.ecommerce.listener.GenericoListener;
+import com.algaworks.ecommerce.model.converter.BooleanToSimNaoConverter;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -90,4 +92,9 @@ public class Produto extends EntidadeBaseInteger {
 
     @Lob
     private byte[] foto;
+
+    @NotNull
+    @Column(length = 3, nullable = false)
+    @Convert(converter = BooleanToSimNaoConverter.class)
+    private Boolean ativo = Boolean.FALSE;
 }

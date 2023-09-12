@@ -7,9 +7,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
-import lombok.EqualsAndHashCode;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.engine.spi.PersistentAttributeInterceptable;
+import org.hibernate.engine.spi.PersistentAttributeInterceptor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,10 +22,12 @@ import java.util.List;
 @EntityListeners({ GerarNotaFiscalListener.class, GenericoListener.class })
 @Entity
 @Table(name = "pedido")
-public class Pedido extends EntidadeBaseInteger {
+public class Pedido extends EntidadeBaseInteger
+        // implements PersistentAttributeInterceptable
+{
 
     @NotNull
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
     private Cliente cliente;
@@ -45,7 +49,8 @@ public class Pedido extends EntidadeBaseInteger {
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
 
-    @OneToOne(mappedBy = "pedido")
+    //@LazyToOne(LazyToOneOption.NO_PROXY)
+    @OneToOne(mappedBy = "pedido", fetch = FetchType.LAZY)
     private NotaFiscal notaFiscal;
 
     @NotNull
@@ -58,11 +63,66 @@ public class Pedido extends EntidadeBaseInteger {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
-    @OneToOne(mappedBy = "pedido")
+    //@LazyToOne(LazyToOneOption.NO_PROXY)
+    @OneToOne(mappedBy = "pedido", fetch = FetchType.LAZY)
     private Pagamento pagamento;
 
     @Embedded
     private EnderecoEntregaPedido enderecoEntrega;
+
+
+
+    //    @Setter(AccessLevel.NONE)
+//    @Getter(AccessLevel.NONE)
+//    @Transient
+//    private PersistentAttributeInterceptor persistentAttributeInterceptor;
+//
+//    @Override
+//    public PersistentAttributeInterceptor $$_hibernate_getInterceptor() {
+//        return this.persistentAttributeInterceptor;
+//    }
+//
+//    @Override
+//    public void $$_hibernate_setInterceptor(PersistentAttributeInterceptor persistentAttributeInterceptor) {
+//        this.persistentAttributeInterceptor = persistentAttributeInterceptor;
+//    }
+
+//    public NotaFiscal getNotaFiscal() {
+//        if (this.persistentAttributeInterceptor != null) {
+//            return (NotaFiscal) persistentAttributeInterceptor
+//                    .readObject(this, "notaFiscal", this. notaFiscal);
+//        }
+//
+//        return this.notaFiscal;
+//    }
+//
+//    public void setNotaFiscal(NotaFiscal notaFiscal) {
+//        if (this.persistentAttributeInterceptor != null) {
+//            this.notaFiscal = (NotaFiscal) persistentAttributeInterceptor
+//                    .writeObject(this, "notaFiscal", this.notaFiscal, notaFiscal);
+//        } else {
+//            this.notaFiscal = notaFiscal;
+//        }
+//    }
+//
+//    public Pagamento getPagamento() {
+//        if (this.persistentAttributeInterceptor != null) {
+//            return (Pagamento) persistentAttributeInterceptor
+//                    .readObject(this, "pagamento", this.pagamento);
+//        }
+//
+//        return this.pagamento;
+//    }
+//
+//    public void setPagamento(Pagamento pagamento) {
+//        if (this.persistentAttributeInterceptor != null) {
+//            this.pagamento = (Pagamento) persistentAttributeInterceptor
+//                    .writeObject(this, "pagamento", this.pagamento, pagamento);
+//        } else {
+//            this.pagamento = pagamento;
+//        }
+//    }
+
 
     public boolean isPago() {
         return StatusPedido.PAGO.equals(status);

@@ -30,4 +30,19 @@
         em determinada consulta precisa ser EAGER, mas está como LAZY
     - entityGraph.addAttributeNodes("dataCriacao", "status", "total", "notaFiscal"): traz somente
         os atributos especificados, mesmo que na entidade de origem tenha atributos como EAGER
+    - jakarta.persistence.loadgraph: Traz todas as propriedades informadas e mantém o comportamento
+        padrão na entidade (o que for EAGER permanece como EAGER e o que for LAZY permanece como LAZY),
+        ou seja, aquelas propriedades que forem EAGER irá trazer e as que forem LAZY não serão buscadas
+    - jakarta.persistence.fetchgraph: traz todas as propriedades informadas independente se elas sejam LAZY.
+        As propriedades não informadas, serão tratadas como LAZY
 -------------------------------------------------------------------------------------
+
+- Aula 12.10:
+    - Subgraph: o ID sempre é trazido já de forma implícita (sempre é tratado como EAGER)
+------------------------------------------------------------------------------------
+
+- Aula 12.14:
+    - Hibernate: quando é feito um mapeamento entre entidades, a entidade mapeada fica no cache,
+        assim quando há outras consultas, é verificado se um determinado registro da entidade mapeada
+        já se encontra no cache antes de fazer a consulta no BD
+------------------------------------------------------------------------------------

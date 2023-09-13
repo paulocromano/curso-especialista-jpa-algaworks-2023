@@ -1,0 +1,37 @@
+- Aula 13.01:
+    - Cache de Primeiro Nível: cache de memória (guarda na memória). Faz a verificação
+        se os dados requisitados já estão em sua memória para não ter que buscar no banco
+    - Funciona para o mesmo EntityManager
+    - Cache de Segundo Nível (Shared Cache): verifica se os dados requisitados já estão no
+        Cache de Primeiro Nível (pode acontecer de depois de um tempo, fazer a consulta no BD
+        por se tratar de cache compartilhado e poder ocorrer mudanças)
+-------------------------------------------------------------------------------------
+
+- Aula 13.02:
+    - A JPA não faz cache da consulta; faz cache do resultado retornado pelo BD
+    - Faz a verificação no cache com base nos registros que lá estão
+    - Só pega do cache quando busca pelo ID
+-------------------------------------------------------------------------------------
+
+- Aula 13.05:
+    - Opções de CACHE (para Cache de Segundo Nível):
+        - UNSPECIFIED: quem vai decidir o que fazer com o Cache de Segundo Nível será
+            a implementação (no caso o Hibernate)
+        - NONE: Não colocar nenhuma entidade em Cache
+        - DISABLE_SELECTIVE: cachea todas as entidades, exceto aquelas que estiverem
+            marcadas como "@Cacheable(false)" (para não cachear)
+        - ALL: cachea todas as entidades, mesmo aquelas que estejam marcadas com "@Cacheable(false)"
+        - ENABLE_SELECTIVE: só habilita o cache daquelas entidades explicitamente marcadas com "@Cacheable(true)"
+-------------------------------------------------------------------------------------
+
+- Aula 13:06 (Controle dinâmico de Cache de Segundo Nível):
+    - jakarta.persistence.cache.retrieveMode CacheRetrieveMode: permite escolher entre buscar ou não no cache em uma pesquisa
+        - USE (default): pega o resultado da consulta e coloca tudo no cache (se já tiver, não atualiza)
+        - BYPASS: ignora o retorno e não coloca ele no cache
+        - REFRESH (parecido com o USE): pega toda consulta e joga no cache
+    - jakarta.persistence.cache.storeMode CacheStoreMode: permite decidir se quer colocar ou não o resultado da pesquisa no cache
+        - USE: para usar o Cache de Segundo Nível
+        - BYPASS: ignora o Cache de Segundo Nível e vai fazer a consulta no BD
+    - CacheStoreMode: a configuração pode ser feita diretamente no EntityManager. Esta configuração pode ser sobrescrita
+        em uma consulta específica quando explicatamente informado o CacheStoreMode
+-------------------------------------------------------------------------------------

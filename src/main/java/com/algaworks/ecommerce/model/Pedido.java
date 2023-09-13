@@ -7,11 +7,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.engine.spi.PersistentAttributeInterceptable;
-import org.hibernate.engine.spi.PersistentAttributeInterceptor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,6 +17,29 @@ import java.util.List;
 @Getter
 @Setter
 @EntityListeners({ GerarNotaFiscalListener.class, GenericoListener.class })
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "Pedido.dadosEssencias",
+                attributeNodes = {
+                        @NamedAttributeNode("dataCriacao"),
+                        @NamedAttributeNode("status"),
+                        @NamedAttributeNode("total"),
+                        @NamedAttributeNode(
+                                value = "cliente",
+                                subgraph = "cli"
+                        )
+                },
+                subgraphs = {
+                        @NamedSubgraph(
+                                name = "cli",
+                                attributeNodes = {
+                                        @NamedAttributeNode("nome"),
+                                        @NamedAttributeNode("cpf")
+                                }
+                        )
+                }
+        )
+})
 @Entity
 @Table(name = "pedido")
 public class Pedido extends EntidadeBaseInteger
@@ -27,7 +47,7 @@ public class Pedido extends EntidadeBaseInteger
 {
 
     @NotNull
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
     private Cliente cliente;
@@ -50,7 +70,7 @@ public class Pedido extends EntidadeBaseInteger
     private LocalDateTime dataConclusao;
 
     //@LazyToOne(LazyToOneOption.NO_PROXY)
-    @OneToOne(mappedBy = "pedido", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
 
     @NotNull
@@ -64,7 +84,7 @@ public class Pedido extends EntidadeBaseInteger
     private StatusPedido status;
 
     //@LazyToOne(LazyToOneOption.NO_PROXY)
-    @OneToOne(mappedBy = "pedido", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "pedido")
     private Pagamento pagamento;
 
     @Embedded

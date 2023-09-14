@@ -20,6 +20,9 @@ public class ItemPedido {
     @EmbeddedId
     private ItemPedidoId id;
 
+    @Version
+    private Integer version;
+
     @MapsId("pedidoId")
     @ManyToOne(optional = false)
     @JoinColumn(name = "pedido_id", nullable = false, foreignKey = @ForeignKey(name = "fk_item_pedido_pedido"))

@@ -1,0 +1,19 @@
+- Aula 14.01:
+-------------------------------------------------------------------------------------
+
+- Aula 14.02:
+    - Lock Otimista: @Version private Integer version; : permite o controle de versões em registros
+        que podem sofrer várias alterações simultâneamente. Quando sofre uma alteração a versão muda,
+        aí se outra request tentar salvar e tiver com uma versão diferente após a atualização da primeira
+        atualização, as alterações dela não serão salvas e será lançado um erro
+    - Lock Pessimista: tranca o BD quando dá erro de versão
+-------------------------------------------------------------------------------------
+
+- Aula 14.03:
+    - Tipos que @Version suporta: Integer, Long, Date, LocalDateTime
+-------------------------------------------------------------------------------------
+
+- Aula 14.04:
+    - Lock Otimista: regra implementada na aplicação (Hibernate) para controle de versão de registro
+    - Lock Pessimista: usa recursos extras do BD. Pede para o BD travar o registro que está sendo usado
+        pela aplicação

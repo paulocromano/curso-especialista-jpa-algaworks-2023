@@ -1,0 +1,8 @@
+- Aula 15.01:
+    - Multitenant: "Múltiplos Inquilinos": quando várias empresas utilizam o mesmo sistema
+        - Abordagens de lidar com isso:
+            - Por máquina: um servidor de BD para cada empresa (Tenant) pra manter os dados separados
+            - Por schema: separa os clientes (empresas) por schemas
+            - Por identificador: usa a mesma base de dados e tabelas, porém além do ID, tem o identificador
+                do cliente específico (empresa), chamado de "TenantID"
+-------------------------------------------------------------------------------------

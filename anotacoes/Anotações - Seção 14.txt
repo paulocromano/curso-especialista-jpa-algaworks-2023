@@ -17,3 +17,25 @@
     - Lock Otimista: regra implementada na aplicação (Hibernate) para controle de versão de registro
     - Lock Pessimista: usa recursos extras do BD. Pede para o BD travar o registro que está sendo usado
         pela aplicação
+-------------------------------------------------------------------------------------
+
+- Aula 14.05:
+    - LockModeType.PESSIMISTIC_READ: a consulta que tiver este parâmetro fará com que as
+        outras consultas com o mesmo registro consulte normalmente, porém não irá permitir
+        que elas façam alterações (commitar), pois estaria com um estado anterior ao da consulta
+        que fez alterações e que estava marcada com LockModeType.PESSIMISTIC_READ
+    - Permite que outras transações leiam, mas não commitem
+    - Quando tem duas transações pedindo lock do mesmo registro e ambas estão como LockModeType.PESSIMISTIC_READ,
+        vai ganhar a transação que commitar primeiro
+-------------------------------------------------------------------------------------
+
+- Aula 14.06:
+    - LockModeType.PESSIMISTIC_WRITE: a consulta que tiver este parâmetro irá fazer com que os
+        outros updates aguardem o update da consulta citada inicialmente para depois os updates
+        subsequentes serem commitados
+    - Não pode ter o atributo "@Version private Integer version" pra não acontecer de usar o Lock Otimista
+    - Quando ambas consultas para fazerem updates contém o LockModeType.PESSIMISTIC_WRITE, vai fazer com que
+        trave a segunda consulta enquanto aguarda que a primeira consulta realize o update para que depois a segunda
+        consulta seja destravada e realize o update (neste caso não tem problema com o "version", pois a segunda consulta
+        já estará com o registro atualizado)
+-------------------------------------------------------------------------------------
